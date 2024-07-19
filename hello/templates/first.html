@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+</head>
+
+<body>
+    <p>
+        I like to make apps
+    </p>
+    <form onsubmit="return false" id="form">
+        <input type="text" name="name" id="yourName" placeholder="Enter your name" >
+        <input type="submit" id="submit" onclick="submitForm()">
+    </form>
+    <p id="result-container"></p>
+    <script>
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        const csrftoken = getCookie('csrftoken');
+        function submitForm() {
+            var formData = new FormData(document.getElementById("form"));
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/form", true);
+            xhr.setRequestHeader('X-CSRFToken', csrftoken)
+            xhr.onreadystatechange = function () {
+                document.getElementById('result-container').innerText = xhr.responseText
+            };
+            xhr.send(formData);
+        }
+    </script>
+</body>
+
+</html>

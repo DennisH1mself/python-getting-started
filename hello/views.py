@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from django.http import HttpRequest, HttpResponse
 from .models import Greeting
 
 # Create your views here.
@@ -8,7 +8,11 @@ from .models import Greeting
 def index(request):
     return render(request, "index.html")
 
-
+def form(request: HttpRequest):
+    if request.method == 'GET':
+        return render(request, 'first.html')
+    else:
+        return HttpResponse('We got ' + request.POST['name'] + ' in da house.')
 def db(request):
     # If you encounter errors visiting the `/db/` page on the example app, check that:
     #
