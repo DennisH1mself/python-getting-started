@@ -7,7 +7,6 @@ from .models import Greeting
 
 def index(request):
     return render(request, "index.html")
-@csrf_exempt
 def form(request: HttpRequest):
     if request.method == 'GET':
         return render(request, 'first.html')
