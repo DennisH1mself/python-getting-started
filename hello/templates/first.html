@@ -10,6 +10,7 @@
         I like to make apps
     </p>
     <form onsubmit="return false" id="form">
+        {% csrf_token %}
         <input type="text" name="name" id="yourName" placeholder="Enter your name" >
         <input type="submit" id="submit" onclick="submitForm()">
     </form>
