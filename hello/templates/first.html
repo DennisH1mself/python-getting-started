@@ -36,7 +36,7 @@
             var formData = new FormData(document.getElementById("form"));
             var xhr = new XMLHttpRequest();
             xhr.open("POST", "/form", true);
-            xhr.setRequestHeader('X-CSRFToken', csrftoken)
+            //xhr.setRequestHeader('X-CSRFToken', csrftoken)
             xhr.onreadystatechange = function () {
                 document.getElementById('result-container').innerText = xhr.responseText
             };
